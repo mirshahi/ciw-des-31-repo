@@ -1,0 +1,339 @@
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: var(--z-header);
+  color: var(--white);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  border-bottom: 1px solid transparent;
+}
+
+.site-header.is-stuck {
+  background: rgba(255, 255, 255, 0.94);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(14px);
+  border-bottom-color: var(--line);
+  color: var(--navy-800);
+  box-shadow: 0 8px 28px rgba(10, 37, 64, 0.06);
+}
+
+.site-header.is-open {
+  color: var(--white);
+  background: transparent;
+  border-bottom-color: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.site-header__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-6);
+  height: var(--header-h);
+}
+
+/* --- Primary navigation --------------------------------------------------- */
+
+.site-header__nav {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.site-header__list {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.1vw, 2.1rem);
+}
+
+.site-header__link {
+  position: relative;
+  display: inline-block;
+  padding: 6px 2px;
+  color: inherit;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.015em;
+  opacity: 0.82;
+  transition: opacity var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+.site-header__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: var(--champagne-500);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur) var(--ease);
+}
+
+.site-header__link:hover {
+  opacity: 1;
+}
+
+.site-header__link:hover::after,
+.site-header__link.is-active::after {
+  transform: scaleX(1);
+}
+
+.site-header__link.is-active {
+  opacity: 1;
+  font-weight: 600;
+}
+
+/* --- Actions -------------------------------------------------------------- */
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-left: auto;
+}
+
+.site-header__saved {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-pill);
+  color: inherit;
+  opacity: 0.85;
+  transition: opacity var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+}
+
+.site-header__saved:hover {
+  opacity: 1;
+  background: rgba(197, 160, 89, 0.16);
+}
+
+.site-header__count {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  display: none;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: var(--r-pill);
+  background: var(--champagne-500);
+  color: var(--navy-900);
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+}
+
+.site-header__count.is-visible {
+  display: block;
+}
+
+.site-header .btn--champagne-outline {
+  --btn-fg: currentColor;
+}
+
+.site-header.is-stuck .btn--champagne-outline {
+  --btn-border: var(--navy-800);
+  --btn-fg: var(--navy-800);
+  --btn-bg: transparent;
+}
+
+.site-header.is-stuck .btn--champagne-outline:hover {
+  --btn-bg: var(--navy-800);
+  --btn-fg: var(--white);
+}
+
+.site-header__burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid currentColor;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: inherit;
+  opacity: 0.9;
+  transition: opacity var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+}
+
+.site-header__burger:hover {
+  opacity: 1;
+  background: rgba(197, 160, 89, 0.14);
+}
+
+/* --- Full-screen menu ----------------------------------------------------- */
+
+.site-menu {
+  position: fixed;
+  inset: var(--header-h) 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--s-8) var(--gutter) calc(var(--s-8) + env(safe-area-inset-bottom));
+  background: var(--navy-900);
+  color: var(--white);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease),
+    visibility 0s linear var(--dur);
+}
+
+.site-menu.is-open {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), visibility 0s;
+  overflow-y: auto;
+}
+
+.site-menu__nav li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+}
+
+.site-menu.is-open .site-menu__nav li {
+  opacity: 1;
+  transform: none;
+}
+
+.site-menu__nav .site-header__link {
+  display: block;
+  padding: var(--s-4) 0;
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  opacity: 1;
+}
+
+.site-menu__nav .site-header__link::after {
+  display: none;
+}
+
+.site-menu__nav .site-header__link.is-active {
+  color: var(--champagne-300);
+}
+
+.site-menu__foot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  padding-top: var(--s-8);
+}
+
+.site-menu__mail {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: var(--fs-small);
+}
+
+.site-menu__social {
+  display: flex;
+  gap: var(--s-4);
+}
+
+.site-menu__social a {
+  color: rgba(255, 255, 255, 0.7);
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.site-menu__social a:hover {
+  color: var(--champagne-300);
+}
+
+/* --- Breakpoints ---------------------------------------------------------- */
+
+@media (max-width: 1080px) {
+  .site-header__nav {
+    display: none;
+  }
+
+  .site-header__burger {
+    display: inline-flex;
+  }
+}
+
+/* Narrow screens: tighten every control so the menu button always sits inside
+   the viewport. The mark, wordmark and actions are sized so the row fits a
+   320px iPhone SE with room to spare. */
+@media (max-width: 620px) {
+  .site-header__inner {
+    gap: var(--s-3);
+    padding-inline: clamp(0.875rem, 4vw, 3rem);
+  }
+
+  .site-header__actions {
+    gap: var(--s-2);
+    flex: none;
+  }
+
+  .site-header__phone span {
+    display: none;
+  }
+
+  .site-header__phone {
+    min-width: 40px;
+    min-height: 40px;
+    padding-inline: var(--s-2);
+  }
+
+  .site-header__saved {
+    width: 34px;
+    height: 34px;
+  }
+
+  .site-header__burger {
+    width: 38px;
+    height: 38px;
+  }
+
+  .site-header .logo__mark {
+    width: 24px;
+    height: 24px;
+  }
+
+  .site-header .logo__name {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (max-width: 400px) {
+  /* The shortlist stays reachable from the menu, so the header heart goes. */
+  .site-header__saved {
+    display: none;
+  }
+
+  .site-header .logo {
+    gap: 0.5rem;
+  }
+
+  .site-header .logo__mark {
+    width: 22px;
+    height: 22px;
+  }
+
+  .site-header .logo__name {
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+  }
+}
+
+@media (min-width: 1081px) {
+  .site-menu {
+    display: none;
+  }
+}

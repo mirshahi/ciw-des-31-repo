@@ -1,0 +1,129 @@
+.enquiry {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-5);
+}
+
+.enquiry__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  min-width: 0;
+}
+
+.enquiry__field--wide,
+.enquiry__actions {
+  grid-column: 1 / -1;
+}
+
+.enquiry__field label {
+  color: var(--ink);
+  font-size: var(--fs-small);
+  font-weight: 600;
+}
+
+.enquiry__optional {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.enquiry__field input,
+.enquiry__field textarea {
+  width: 100%;
+  padding: var(--s-3) var(--s-4);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  background: var(--white);
+  color: var(--ink);
+  font-size: var(--fs-small);
+  transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+
+.enquiry__field textarea {
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.enquiry__field input:focus,
+.enquiry__field textarea:focus {
+  outline: none;
+  border-color: var(--champagne-500);
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.16);
+}
+
+.enquiry__field input[aria-invalid='true'],
+.enquiry__field textarea[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+
+.enquiry__error {
+  color: var(--danger);
+  font-size: var(--fs-micro);
+}
+
+.enquiry__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-5);
+  padding-top: var(--s-2);
+}
+
+.enquiry__note {
+  color: var(--muted);
+  font-size: var(--fs-micro);
+}
+
+/* --- Confirmation --------------------------------------------------------- */
+
+.enquiry__done {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-4);
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--ivory);
+  text-align: center;
+}
+
+.enquiry__done-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--r-pill);
+  background: var(--white);
+  color: var(--champagne-600);
+  box-shadow: var(--shadow-sm);
+}
+
+.enquiry__done h3 {
+  font-size: var(--fs-h3);
+}
+
+.enquiry__done p {
+  max-width: 46ch;
+  color: var(--muted);
+  font-size: var(--fs-small);
+}
+
+.enquiry__done-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-3);
+  margin-top: var(--s-2);
+}
+
+@media (max-width: 640px) {
+  .enquiry {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .enquiry__actions .btn {
+    width: 100%;
+  }
+}

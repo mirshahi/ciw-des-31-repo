@@ -1,0 +1,41 @@
+.photo {
+  position: relative;
+  overflow: hidden;
+  background: var(--mist-deep);
+  isolation: isolate;
+}
+
+/* Fills its positioned parent instead of reserving its own ratio. */
+.photo--fill {
+  position: absolute;
+  inset: 0;
+}
+
+.photo__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 620ms var(--ease-out), transform var(--dur-slow) var(--ease-out);
+}
+
+.photo__img.is-loaded {
+  opacity: 1;
+}
+
+/* Readability scrim for text placed over photography. */
+.photo__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(4, 18, 31, 0.82) 0%,
+    rgba(4, 18, 31, 0.42) 38%,
+    rgba(4, 18, 31, 0.06) 70%,
+    rgba(4, 18, 31, 0) 100%
+  );
+}

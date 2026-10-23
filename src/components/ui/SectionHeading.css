@@ -1,0 +1,7 @@
+.section-head__text {
+  margin-inline: auto;
+}
+
+.section-head--centered .section-head__text {
+  text-align: center;
+}

@@ -1,0 +1,63 @@
+.notfound {
+  display: flex;
+  align-items: center;
+  min-height: 82vh;
+  padding-top: calc(var(--header-h) + var(--s-10));
+  padding-bottom: var(--s-16);
+  background: var(--navy-900);
+}
+
+.notfound__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-6);
+}
+
+.notfound__title {
+  color: var(--white);
+  font-size: var(--fs-h1);
+  max-width: 18ch;
+}
+
+.notfound__text {
+  max-width: 52ch;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: var(--fs-lead);
+  line-height: 1.7;
+}
+
+.notfound__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+}
+
+.notfound__nav {
+  width: 100%;
+  margin-top: var(--s-8);
+  padding-top: var(--s-6);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.notfound__nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-5) var(--s-8);
+}
+
+.notfound__nav a {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--fs-small);
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.notfound__nav a:hover {
+  color: var(--champagne-300);
+}
+
+@media (max-width: 520px) {
+  .notfound__actions .btn {
+    width: 100%;
+  }
+}

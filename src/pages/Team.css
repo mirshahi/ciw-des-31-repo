@@ -1,0 +1,119 @@
+.team-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.team-page__row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr);
+  gap: clamp(1.75rem, 5vw, 4.5rem);
+  align-items: center;
+  padding-block: clamp(2rem, 4vw, 3.25rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.team-page__row:first-child {
+  padding-top: 0;
+}
+
+.team-page__media {
+  overflow: hidden;
+  border-radius: var(--r-md);
+  background: var(--mist-deep);
+  max-width: 320px;
+}
+
+.team-page__media img {
+  transition: transform 1100ms var(--ease-out), opacity 620ms var(--ease-out);
+}
+
+.team-page__row:hover .team-page__media img {
+  transform: scale(1.035);
+}
+
+.team-page__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-3);
+  max-width: 58ch;
+}
+
+.team-page__name {
+  font-size: var(--fs-h2);
+}
+
+.team-page__role {
+  color: var(--champagne-600);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.team-page__bio {
+  color: var(--text);
+  font-size: var(--fs-lead);
+  line-height: 1.75;
+}
+
+.team-page__specialties {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-2);
+}
+
+.team-page__specialties li {
+  padding: 6px var(--s-4);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-pill);
+  background: var(--ivory);
+  color: var(--text);
+  font-size: var(--fs-micro);
+}
+
+.team-page__contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-6);
+  margin-top: var(--s-3);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+  width: 100%;
+}
+
+.team-page__contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  color: var(--text);
+  font-size: var(--fs-small);
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.team-page__contact a:hover {
+  color: var(--champagne-700);
+}
+
+.team-page__contact .icon {
+  color: var(--champagne-600);
+}
+
+@media (max-width: 900px) {
+  .team-page__row {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .team-page__media {
+    max-width: 260px;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-page__contact {
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+}

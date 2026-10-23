@@ -1,0 +1,210 @@
+.property-card {
+  position: relative;
+}
+
+/* --- Overlay variant (homepage carousel) ---------------------------------- */
+
+.property-card--overlay {
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--navy-900);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.property-card--overlay:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.property-card__link {
+  display: block;
+  position: relative;
+}
+
+.property-card--overlay .property-card__img {
+  transition: transform 900ms var(--ease-out), opacity 620ms var(--ease-out);
+}
+
+.property-card--overlay:hover .property-card__img {
+  transform: scale(1.045);
+}
+
+.property-card__body {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-6) var(--s-5) var(--s-5);
+  color: var(--white);
+}
+
+.property-card__body .property-card__title {
+  color: var(--white);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.property-card__body .property-card__price {
+  margin-top: var(--s-1);
+  color: var(--champagne-300);
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.property-card__body .property-card__location {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.property-card__favorite {
+  position: absolute;
+  z-index: 3;
+  top: var(--s-4);
+  right: var(--s-4);
+}
+
+/* --- Stacked variant (listing grid) --------------------------------------- */
+
+.property-card--stacked {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--white);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.property-card--stacked:hover {
+  transform: translateY(-3px);
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.property-card__media {
+  position: relative;
+  overflow: hidden;
+  background: var(--mist-deep);
+}
+
+.property-card--stacked .property-card__media img {
+  transition: transform 900ms var(--ease-out), opacity 620ms var(--ease-out);
+}
+
+.property-card--stacked:hover .property-card__media img {
+  transform: scale(1.04);
+}
+
+.property-card__status {
+  position: absolute;
+  top: var(--s-4);
+  left: var(--s-4);
+  padding: 5px var(--s-3);
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--navy-800);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.property-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-6) var(--s-6) var(--s-5);
+}
+
+.property-card__type {
+  color: var(--champagne-600);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.property-card__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.property-card__title a {
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.property-card__title a:hover {
+  color: var(--champagne-600);
+}
+
+.property-card__location {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--muted);
+  font-size: var(--fs-small);
+  line-height: 1.4;
+}
+
+.property-card__location .icon {
+  flex: none;
+  color: var(--champagne-500);
+}
+
+.property-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-5);
+  margin-top: var(--s-2);
+  padding-block: var(--s-4);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  font-size: var(--fs-micro);
+}
+
+.property-card__meta li {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.property-card__meta .icon {
+  color: var(--navy-600);
+}
+
+.property-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding-top: var(--s-3);
+}
+
+.property-card__foot .property-card__price {
+  color: var(--navy-800);
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.link-arrow__icon {
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.link-arrow:hover .link-arrow__icon {
+  transform: translateX(2px);
+}
+
+@media (max-width: 640px) {
+  .property-card__info {
+    padding: var(--s-5) var(--s-5) var(--s-4);
+  }
+}

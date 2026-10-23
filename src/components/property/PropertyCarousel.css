@@ -1,0 +1,131 @@
+.carousel {
+  position: relative;
+}
+
+.carousel__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: clamp(232px, 25vw, 316px);
+  column-gap: clamp(0.875rem, 1.5vw, 1.5rem);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  padding-bottom: var(--s-2);
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel__track:focus-visible {
+  outline-offset: 6px;
+}
+
+.carousel__track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+
+.carousel__track.is-dragging * {
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+.carousel__item {
+  scroll-snap-align: start;
+}
+
+.carousel__item > * {
+  height: 100%;
+}
+
+/* --- Controls ------------------------------------------------------------- */
+
+.carousel__nav {
+  position: absolute;
+  inset: 0 0 auto;
+  height: calc(100% - 34px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.carousel__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  background: var(--white);
+  color: var(--navy-800);
+  box-shadow: var(--shadow-md);
+  pointer-events: auto;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+.carousel__btn:first-child {
+  margin-left: -24px;
+}
+
+.carousel__btn:last-child {
+  margin-right: -24px;
+}
+
+.carousel__btn:hover {
+  background: var(--navy-800);
+  border-color: var(--navy-800);
+  color: var(--white);
+  transform: scale(1.04);
+}
+
+/* --- Progress ------------------------------------------------------------- */
+
+.carousel__progress {
+  position: relative;
+  height: 2px;
+  margin-top: var(--s-6);
+  border-radius: var(--r-pill);
+  background: var(--line);
+  overflow: hidden;
+}
+
+.carousel__progress span {
+  position: absolute;
+  inset: 0;
+  background: var(--champagne-500);
+  transform-origin: left center;
+  transition: transform var(--dur) var(--ease);
+}
+
+@media (max-width: 900px) {
+  .carousel__track {
+    grid-auto-columns: min(72vw, 300px);
+    cursor: default;
+  }
+
+  .carousel__nav {
+    position: static;
+    height: auto;
+    justify-content: center;
+    gap: var(--s-4);
+    margin-top: var(--s-6);
+  }
+
+  .carousel__btn:first-child,
+  .carousel__btn:last-child {
+    margin: 0;
+  }
+
+  .carousel__progress {
+    margin-top: var(--s-4);
+  }
+}

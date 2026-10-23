@@ -1,0 +1,20 @@
+.properties {
+  padding-top: 0;
+}
+
+.properties__filters {
+  position: relative;
+  z-index: 2;
+  margin-top: calc(-1 * var(--s-10));
+}
+
+.properties__results {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+@media (max-width: 900px) {
+  .properties__filters {
+    margin-top: 0;
+    padding-top: var(--section-y);
+  }
+}

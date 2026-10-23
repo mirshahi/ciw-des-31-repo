@@ -1,0 +1,9 @@
+.team-section {
+  background: var(--white);
+}
+
+.team-section__more {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(2.25rem, 4vw, 3.25rem);
+}

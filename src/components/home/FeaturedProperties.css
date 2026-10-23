@@ -1,0 +1,15 @@
+.featured__heading {
+  margin-bottom: 0;
+}
+
+.featured__more {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(2.5rem, 5vw, 3.75rem);
+}
+
+/* The section heading's own title element is the visible H2; the sr-only one
+   above keeps the aria-labelledby target stable when the eyebrow is hidden. */
+.featured .section-head__title {
+  font-size: var(--fs-h2);
+}

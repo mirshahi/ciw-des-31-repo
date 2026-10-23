@@ -1,0 +1,100 @@
+/* ==========================================================================
+   Horizon Properties — design tokens
+   Single source of truth for colour, type, spacing, radii and motion.
+   ========================================================================== */
+
+:root {
+  /* --- Brand colour ------------------------------------------------------ */
+  --navy-950: #04121f;
+  --navy-900: #071c33;
+  --navy-800: #0a2540; /* primary */
+  --navy-700: #103454;
+  --navy-600: #1b476d;
+  --navy-500: #2c5c85;
+
+  --champagne-700: #8f6f31;
+  --champagne-600: #a9853f;
+  --champagne-500: #c5a059; /* accent */
+  --champagne-300: #ddc48d;
+  --champagne-100: #f4ebd9;
+
+  --white: #ffffff;
+  --ivory: #faf8f4;
+  --mist: #eef2f6; /* pale blue-grey sections */
+  --mist-deep: #e3eaf1;
+
+  --ink: #0d1b2a;
+  --text: #37454f;
+  --muted: #6b7787;
+  --line: #e6e9ee;
+  --line-strong: #d5dae1;
+
+  --danger: #b4472f;
+
+  /* --- Typography -------------------------------------------------------- */
+  --font-display: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  --fs-display: clamp(2.5rem, 6vw, 4.75rem);
+  --fs-h1: clamp(2.1rem, 4.4vw, 3.4rem);
+  --fs-h2: clamp(1.85rem, 3.2vw, 2.7rem);
+  --fs-h3: clamp(1.25rem, 1.8vw, 1.6rem);
+  --fs-h4: clamp(1.05rem, 1.3vw, 1.2rem);
+  --fs-lead: clamp(1rem, 1.15vw, 1.1875rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-micro: 0.8125rem;
+  --fs-label: 0.75rem;
+
+  --lh-tight: 1.08;
+  --lh-heading: 1.18;
+  --lh-body: 1.72;
+
+  --tracking-label: 0.16em;
+  --tracking-tight: -0.02em;
+
+  /* --- Spacing (4px base) ------------------------------------------------ */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.25rem;
+  --s-6: 1.5rem;
+  --s-8: 2rem;
+  --s-10: 2.5rem;
+  --s-12: 3rem;
+  --s-16: 4rem;
+  --s-20: 5rem;
+  --s-24: 6rem;
+
+  /* --- Layout ------------------------------------------------------------ */
+  --container: 1240px;
+  --container-wide: 1440px;
+  --gutter: clamp(1.125rem, 4vw, 3rem);
+  --section-y: clamp(3.75rem, 8vw, 7.5rem);
+  --header-h: 78px;
+
+  /* --- Radii ------------------------------------------------------------- */
+  --r-xs: 4px;
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+
+  /* --- Motion ------------------------------------------------------------ */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 180ms;
+  --dur: 320ms;
+  --dur-slow: 700ms;
+
+  /* --- Elevation --------------------------------------------------------- */
+  --shadow-xs: 0 1px 3px rgba(10, 37, 64, 0.06);
+  --shadow-sm: 0 4px 14px rgba(10, 37, 64, 0.07);
+  --shadow-md: 0 14px 34px rgba(10, 37, 64, 0.1);
+  --shadow-lg: 0 28px 64px rgba(10, 37, 64, 0.16);
+
+  --z-header: 100;
+  --z-overlay: 200;
+}
