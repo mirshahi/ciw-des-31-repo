@@ -1,11 +1,39 @@
+/* ==========================================================================
+   Hero — a still photograph at its base, a scroll-scrubbed clip over it.
+   ========================================================================== */
+
 .hero {
+  position: relative;
+  background: var(--navy-950);
+}
+
+/* In scroll mode the section is only a track: the viewport inside it is what
+   sticks to the top of the screen while the user drives the clip. */
+.hero__viewport {
   position: relative;
   display: flex;
   align-items: center;
   min-height: clamp(620px, 94vh, 920px);
   padding-top: var(--header-h);
-  background: var(--navy-950);
   overflow: hidden;
+}
+
+/* 300vh of track pins the 100vh viewport for two extra screens of scrolling,
+   which carries the whole 8s clip at a comfortable pace. Added only when the
+   clip is genuinely available, so prefers-reduced-motion and a failed download
+   both keep the original single-screen hero.
+
+   `--hero-p`, the 0–1 scroll progress, is set on this element by
+   useScrollScrubVideo and drives every scroll-linked fade below. */
+.hero.is-scrub {
+  height: 300vh;
+}
+
+.hero.is-scrub .hero__viewport {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  min-height: 0;
 }
 
 .hero__media {
@@ -24,6 +52,24 @@
   }
 }
 
+/* The clip is invisible until it can actually be scrubbed, so the photograph
+   underneath carries the opening and a failure never shows a blank frame. */
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 700ms var(--ease-out);
+}
+
+.hero.is-ready .hero__video {
+  opacity: 1;
+}
+
+/* Kept deliberately light: the clip stays the dominant surface, the gradient
+   only buys the copy and the fixed navigation their contrast. */
 .hero__scrim {
   position: absolute;
   inset: 0;
@@ -39,6 +85,18 @@
     radial-gradient(120% 80% at 50% 40%, rgba(4, 18, 31, 0.42) 0%, rgba(4, 18, 31, 0) 60%);
 }
 
+.hero.is-scrub .hero__scrim {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(4, 18, 31, 0.62) 0%,
+      rgba(4, 18, 31, 0.24) 30%,
+      rgba(4, 18, 31, 0.14) 56%,
+      rgba(4, 18, 31, 0.52) 100%
+    ),
+    radial-gradient(120% 80% at 50% 42%, rgba(4, 18, 31, 0.3) 0%, rgba(4, 18, 31, 0) 62%);
+}
+
 .hero__inner {
   position: relative;
   z-index: 2;
@@ -48,6 +106,14 @@
   gap: var(--s-6);
   padding-block: clamp(4rem, 12vh, 9rem);
   text-align: center;
+}
+
+/* Yields the frame to the clip within the first third of the track — the
+   scroll itself is the motion, so a transform reads as drift, not parallax. */
+.hero.is-scrub .hero__inner {
+  opacity: calc(1 - var(--hero-p, 0) * 3);
+  transform: translateY(calc(var(--hero-p, 0) * -40px));
+  will-change: transform, opacity;
 }
 
 .hero__title {
@@ -98,11 +164,17 @@
   font-weight: 500;
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
+  opacity: calc(1 - var(--hero-p, 0) * 6);
   transition: color var(--dur-fast) var(--ease);
 }
 
 .hero__cue:hover {
   color: var(--champagne-300);
+}
+
+/* Withheld until there is something to scrub. */
+.hero.is-scrub:not(.is-ready) .hero__cue {
+  opacity: 0;
 }
 
 .hero__cue-line {
@@ -132,6 +204,52 @@
   }
 }
 
+/* --- Preparing the clip --------------------------------------------------- */
+
+.hero__loading {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: clamp(3.25rem, 7vh, 4.75rem);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
+  opacity: 0;
+  transition: opacity 600ms var(--ease-out);
+  pointer-events: none;
+}
+
+.hero.is-scrub:not(.is-ready) .hero__loading {
+  opacity: 1;
+}
+
+.hero__loading-label {
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.hero__loading-track {
+  display: block;
+  width: 118px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.24);
+  overflow: hidden;
+}
+
+.hero__loading-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--champagne-500);
+  transform: scaleX(var(--load, 0));
+  transform-origin: left center;
+}
+
 /* --- Transition into the white section below ------------------------------ */
 
 .hero__fade {
@@ -145,9 +263,20 @@
   pointer-events: none;
 }
 
+/* Only arrives with the end of the clip, so the hand-off into the white
+   section is a dissolve rather than a hard cut under a pinned video. */
+.hero.is-scrub .hero__fade {
+  opacity: calc(var(--hero-p, 0) * 5 - 4);
+}
+
 @media (max-width: 760px) {
-  .hero {
+  .hero__viewport {
     min-height: clamp(560px, 88vh, 760px);
+  }
+
+  /* A shorter track for a shorter, faster scroll gesture. */
+  .hero.is-scrub {
+    height: 260vh;
   }
 
   .hero__title {
@@ -165,7 +294,8 @@
     font-size: 0.9375rem;
   }
 
-  .hero__cue {
+  .hero__cue,
+  .hero__loading {
     bottom: 2.25rem;
   }
 
